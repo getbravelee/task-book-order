@@ -1,2 +1,4 @@
-package bookorder.book.domain;public class Discount {
+package bookorder.book.domain;
+
+public class Discount {
 }
