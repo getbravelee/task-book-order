@@ -41,7 +41,7 @@
     - String method (카드 또는 현금)
     - double amount (결제 금액)
   - Discount
-    - Long disCountId
+    - Long discountId
     - String category
     - double amount
   
