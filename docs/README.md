@@ -44,6 +44,8 @@
     - Long discountId
     - String category
     - double amount
+  - Cart
+    - List<Book> books
   
 
 - Repository : 각 도메인 클래스에 대한 CRUD, 데이터베이스에 접근, 도메인 객체를 DB에 저장하고 관리
@@ -51,6 +53,7 @@
   - BookRepository
   - PaymentRepository
   - DiscountRepository
+  - CartRepository
   
 
 - Service : 핵심 비지니스 로직 구현
@@ -58,6 +61,7 @@
   - 조회 BookService
   - 결제 PaymentService
   - 할인 DiscountService
+  - 장바구니 CartService
   
 
 - Controller : 클라이언트가 호출
