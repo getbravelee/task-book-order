@@ -15,8 +15,8 @@ public class Book {
     private String name;
     private String category;
     private int originPrice;
-    private int discountPrice;
-    private List<String> discountList;
+//    private int discountPrice;
+//    private List<String> discountList;
 
     public Long getId() {
         return id;
@@ -49,6 +49,7 @@ public class Book {
     public void setOriginPrice(int originPrice) {
         this.originPrice = originPrice;
     }
+ /*
     public int getDiscountPrice() {
         return discountPrice;
     }
@@ -64,4 +65,5 @@ public class Book {
     public void setDiscountList(List<String> discountList) {
         this.discountList = discountList;
     }
+*/
 }
