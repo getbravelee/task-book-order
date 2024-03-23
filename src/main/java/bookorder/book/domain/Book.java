@@ -1,17 +1,29 @@
 package bookorder.book.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
 public class Book {
-    private Long bookId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private String category;
-    private double price;
+    private int originPrice;
+    private int discountPrice;
+    private List<String> discountList;
 
-    public Long getBookId() {
-        return bookId;
+    public Long getId() {
+        return id;
     }
 
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,11 +42,26 @@ public class Book {
         this.category = category;
     }
 
-    public double getPrice() {
-        return price;
+    public int getOriginPrice() {
+        return originPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setOriginPrice(int originPrice) {
+        this.originPrice = originPrice;
+    }
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(int discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
+    public List<String> getDiscountList() {
+        return discountList;
+    }
+
+    public void setDiscountList(List<String> discountList) {
+        this.discountList = discountList;
     }
 }

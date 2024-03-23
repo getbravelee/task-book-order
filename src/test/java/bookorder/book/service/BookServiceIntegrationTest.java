@@ -1,6 +1,6 @@
 package bookorder.book.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import bookorder.book.domain.Book;
 import bookorder.book.repository.BookRepository;
@@ -10,34 +10,29 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
-class BookServiceTest {
+class BookServiceIntegrationTest {
 
-    BookService bookService;
-    BookRepository bookRepository;
-
-    @BeforeEach
-    public void beforeEach() {
-        bookRepository = new MemoryBookRepository();
-        bookService = new BookService(bookRepository);
-    }
+    @Autowired BookService bookService;
+    @Autowired BookRepository bookRepository;
 
     @Test
     void 책_추가() {
         //given
         Book book = new Book();
-        book.setName("spring");
+        book.setName("spring123");
         book.setCategory("dev");
         book.setOriginPrice(20000);
 
         //when
-        Long saveBookId = bookService.addBook(book);
+        Long saveId = bookService.addBook(book);
 
         //then
-        Book findBook = bookService.findOne(saveBookId).get();
+        Book findBook = bookService.findOne(saveId).get();
         Assertions.assertThat(book.getName()).isEqualTo(findBook.getName());
     }
 
@@ -45,9 +40,13 @@ class BookServiceTest {
     void 중복_책_예외() {
         Book book1 = new Book();
         book1.setName("spring2");
+        book1.setCategory("dev");
+        book1.setOriginPrice(20000);
 
         Book book2 = new Book();
         book2.setName("spring2");
+        book2.setCategory("develop");
+        book2.setOriginPrice(30000);
 
         bookService.addBook(book1);
         assertThrows(IllegalStateException.class, () -> bookService.addBook(book2));
