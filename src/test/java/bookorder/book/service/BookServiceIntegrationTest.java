@@ -3,10 +3,7 @@ package bookorder.book.service;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import bookorder.book.domain.Book;
-import bookorder.book.repository.BookRepository;
-import bookorder.book.repository.MemoryBookRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 class BookServiceIntegrationTest {
 
     @Autowired BookService bookService;
-    @Autowired BookRepository bookRepository;
 
     @Test
     void 책_추가() {
