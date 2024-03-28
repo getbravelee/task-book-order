@@ -13,7 +13,7 @@ public class BookService {
     }
 
     /**
-     * 책 정보 추가
+     * 도서 정보 추가
      */
     public Long addBook(Book book) {
         // 중복 책 x
