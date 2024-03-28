@@ -1,12 +1,12 @@
 package bookorder.book;
 
 import bookorder.book.repository.BookRepository;
-import bookorder.book.repository.JdbcTemplateMemoryRepository;
 import bookorder.book.repository.JpaBookRepository;
+import bookorder.book.repository.JpaPurchaseRepository;
+import bookorder.book.repository.PurchaseReposiotory;
 import bookorder.book.service.BookService;
+import bookorder.book.service.PurchaseService;
 import jakarta.persistence.EntityManager;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,7 +26,17 @@ public class SpringConfig {
 
     @Bean
     public BookRepository bookRepository() {
-//        return new JdbcTemplateMemoryRepository(dataSource);
         return new JpaBookRepository(em);
     }
+
+    @Bean
+    public PurchaseService purchaseService() {
+        return new PurchaseService(purchaseReposiotory(), bookRepository());
+    }
+
+    @Bean
+    public PurchaseReposiotory purchaseReposiotory() {
+        return new JpaPurchaseRepository(em);
+    }
+
 }

@@ -17,10 +17,11 @@ class BookServiceIntegrationTest {
     @Autowired BookService bookService;
 
     @Test
-    void 책_추가() {
+    @Commit
+    void 도서_추가() {
         //given
         Book book = new Book();
-        book.setName("spring123");
+        book.setName("spring");
         book.setCategory("dev");
         book.setOriginPrice(20000);
 
@@ -33,7 +34,7 @@ class BookServiceIntegrationTest {
     }
 
     @Test
-    void 중복_책_예외() {
+    void 중복_도서_예외() {
         Book book1 = new Book();
         book1.setName("spring2");
         book1.setCategory("dev");
