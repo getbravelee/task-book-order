@@ -1,9 +1,6 @@
 package bookorder.book.service;
 
-import bookorder.book.domain.Book;
-import bookorder.book.domain.PayDetail;
-import bookorder.book.domain.Purchase;
-import bookorder.book.domain.Recipt;
+import bookorder.book.domain.*;
 import bookorder.book.repository.BookRepository;
 import bookorder.book.repository.PurchaseReposiotory;
 
@@ -20,13 +17,21 @@ public class PurchaseService {
     /**
      * 도서 구매
      */
-    public Recipt purchaseBook(Long bookId, String payMethod, int payAmount) {
+
+    // TODO:
+    //  결합도 낮으면 좋은 것
+    //  응집도 높으면 좋은 것
+    // ResponseDto
+    public Recipt purchaseBook(Long bookId, String payMethod, Money payAmount) {
         // 책 정보 가져오기
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 책 ID입니다: " + bookId));
 
         // 결제 금액 확인
-        notEnoughMoney(payAmount, book);
+        if (!book.isBuyable(payAmount)) {
+            throw new IllegalArgumentException("구매할 수 없는 금액입니다.");
+        }
+//        notEnoughMoney(payAmount, book);
 
         // 구매 정보 저장
         Purchase purchase = new Purchase();
@@ -47,7 +52,10 @@ public class PurchaseService {
         return recipt;
     }
 
-    private static void notEnoughMoney(int payAmount, Book book) {
+    // TODO: 묻지말고 시켜라 -> 책임을 할당하고 그 객체에게 시켜라
+    //  안다는 것 -> 디펜던시  == 의존 == 결합 -> 변경에 영향받는다
+    //  함수는 테스트 할 수 없다.
+    private void notEnoughMoney(int payAmount, Book book) {
         if (payAmount < book.getOriginPrice()) {
             throw new IllegalArgumentException("돈이 부족합니다.");
         }

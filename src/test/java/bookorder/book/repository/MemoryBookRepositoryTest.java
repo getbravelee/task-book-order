@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// TODO: TDD에 대해 알아보고 장/단 정리.
 public class MemoryBookRepositoryTest {
     MemoryBookRepository repository;
 

@@ -2,9 +2,12 @@ package bookorder.book.service;
 
 import bookorder.book.domain.Book;
 import bookorder.book.repository.BookRepository;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class BookService {
     private final BookRepository bookRepository;
 

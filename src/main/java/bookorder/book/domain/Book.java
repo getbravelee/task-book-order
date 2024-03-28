@@ -28,6 +28,13 @@ public class Book {
     private String name;
     private String category;
     private int originPrice;
+
+    public boolean isBuyable(int payAmount) {
+        // .....
+
+        //....~100wnf
+        return payAmount >= originPrice;
+    }
 //    private int discountPrice;
 //
 //    @ElementCollection
